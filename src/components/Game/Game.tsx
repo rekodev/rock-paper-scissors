@@ -4,6 +4,7 @@ import { StyledGame, StyledGameChoice, StyledGameChoiceWrapper } from './style';
 import { choices } from '../../utils/choices';
 import Result from '../Result';
 import { getResult } from '../../utils/getResult';
+import { useState, useEffect } from 'react';
 
 interface IGame {
   choiceMade: Choice | null;
@@ -11,6 +12,14 @@ interface IGame {
 }
 
 const Game = ({ choiceMade, setGameStarted }: IGame) => {
+  const [selected, setSelected] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSelected(true);
+    }, 3000);
+  }, []);
+
   const randomChoice = (): Choice => {
     const randomNumber = Math.floor(Math.random() * 5);
 
@@ -25,15 +34,26 @@ const Game = ({ choiceMade, setGameStarted }: IGame) => {
     <StyledGame>
       <StyledGameChoiceWrapper>
         <StyledGameChoice>
-          <ChoiceButton choice={choiceMade} />
+          <ChoiceButton gameStarted choice={choiceMade} />
           <p>YOU PICKED</p>
         </StyledGameChoice>
         <StyledGameChoice>
-          <ChoiceButton choice={computerChoice} />
+          {selected ? (
+            <ChoiceButton gameStarted choice={computerChoice} />
+          ) : (
+            <ChoiceButton gameStarted choice={null} />
+          )}
+
           <p>THE HOUSE PICKED</p>
         </StyledGameChoice>
       </StyledGameChoiceWrapper>
-      <Result result={gameResult} setGameStarted={setGameStarted} />
+      {selected && (
+        <Result
+          result={gameResult}
+          setGameStarted={setGameStarted}
+          setSelected={setSelected}
+        />
+      )}
     </StyledGame>
   );
 };

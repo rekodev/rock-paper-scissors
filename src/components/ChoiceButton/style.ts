@@ -1,10 +1,12 @@
 import styled from 'styled-components';
-import { colorsPrimary } from '../../styles/Theme';
+import { breakpoints, colorsPrimary } from '../../styles/Theme';
 import { Choice } from '../../types/enums';
 import { darkerShadow } from '../../utils/darkerShadow';
 
 interface IStyledChoiceButtonProps {
-  $choice: Choice | null;
+  $choice?: Choice | null;
+  $gameStarted?: boolean;
+  $unselected?: boolean;
 }
 
 const choices = {
@@ -15,9 +17,11 @@ const choices = {
   [Choice.Scissors]: colorsPrimary.scissorsGradient,
 };
 
-export const StyledChoiceButton = styled.div`
-  background: linear-gradient(90deg, #ddd, #f0f0f0);
-  border-top: 2.5px solid lightgray;
+export const StyledChoiceButton = styled.div<IStyledChoiceButtonProps>`
+  background: ${(props) =>
+    props.$unselected ? '#192845' : 'linear-gradient(90deg, #ddd, #f0f0f0)'};
+  border-top: ${(props) =>
+    props.$unselected ? `2.5px solid #192845` : '2.5px solid lightgray'};
   border-radius: 50%;
   height: 100%;
   width: 100%;
@@ -32,13 +36,15 @@ export const StyledChoiceButton = styled.div`
 
 export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
   background: ${(props) =>
-    props.$choice ? `linear-gradient(${choices[props.$choice]})` : 'intial'};
+    props.$choice
+      ? `linear-gradient(${choices[props.$choice]})`
+      : `transparent`};
   padding: 0.675rem;
   border-radius: 50%;
   border-bottom: ${(props) =>
     props.$choice
       ? `3px solid ${darkerShadow(choices[props.$choice], 1, 15)}`
-      : 'initial'};
+      : '3px solid transparent'};
   height: 4.5rem;
   width: 4.75rem;
   z-index: 0;
@@ -46,6 +52,31 @@ export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media screen and (max-width: 280px) {
+    height: 3rem;
+    width: 3.25rem;
+    padding: 0.4rem;
+  }
+
+  @media screen and (min-width: ${breakpoints.medium}) {
+    height: ${(props) => (props.$gameStarted ? '8rem' : '5.25rem')};
+    width: ${(props) => (props.$gameStarted ? '8.4444rem' : '5.25rem')};
+  }
+
+  @media screen and (min-width: ${breakpoints.large}) {
+    height: 6rem;
+    width: 6.3333rem;
+    height: ${(props) => (props.$gameStarted ? '12rem' : '6rem')};
+    width: ${(props) => (props.$gameStarted ? '12.6666rem' : '6.3333rem')};
+  }
+
+  @media screen and (min-width: ${breakpoints.xlarge}) {
+    height: 6.6315rem;
+    width: 7rem;
+    height: ${(props) => (props.$gameStarted ? '16rem' : '6.315rem')};
+    width: ${(props) => (props.$gameStarted ? '16.8888rem' : '7rem')};
   }
 `;
 

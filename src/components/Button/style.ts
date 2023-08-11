@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/Theme';
 
 interface IStyledButtonProps {
   $size?: 'sm' | 'md' | 'lg';
@@ -35,6 +36,15 @@ export const StyledButton = styled(Button)<IStyledButtonProps>`
     &:hover {
       color: #bbb;
       border-color: #bbb;
+    }
+  }
+
+  @media screen and (min-width: ${breakpoints.medium}) {
+    && {
+      position: ${(props) =>
+        props.variant === 'outlined' ? 'absolute' : 'initial'};
+      right: 2rem;
+      bottom: 2rem;
     }
   }
 `;
