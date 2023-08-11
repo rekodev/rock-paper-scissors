@@ -5,6 +5,7 @@ export const StyledFooter = styled.footer`
   color: #fff;
   margin: 0 auto;
   padding: 2rem 0;
+  text-align: center;
 
   a {
     color: #fff;

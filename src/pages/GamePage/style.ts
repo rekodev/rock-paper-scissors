@@ -8,4 +8,5 @@ export const StyledGamePage = styled.section`
   flex: 1;
   padding: 0 2rem;
   padding-bottom: 2rem;
+  min-height: 450px;
 `;
