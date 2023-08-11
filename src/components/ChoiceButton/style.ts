@@ -20,8 +20,8 @@ const choices = {
 export const StyledChoiceButton = styled.div<IStyledChoiceButtonProps>`
   background: ${(props) =>
     props.$unselected ? '#192845' : 'linear-gradient(90deg, #ddd, #f0f0f0)'};
-  border-top: ${(props) =>
-    props.$unselected ? `2.5px solid #192845` : '2.5px solid lightgray'};
+  /* border-top: ${(props) =>
+    props.$unselected ? `2.5px solid #192845` : '2.5px solid lightgray'}; */
   border-radius: 50%;
   height: 100%;
   width: 100%;
@@ -32,6 +32,33 @@ export const StyledChoiceButton = styled.div<IStyledChoiceButtonProps>`
   img {
     width: calc(40%);
   }
+
+  @media screen and (min-width: ${breakpoints.medium}) {
+    border-top: ${(props) =>
+      props.$gameStarted
+        ? '5px solid lightgray'
+        : props.$unselected
+        ? '5px solid #192845'
+        : '3.75px solid lightgray'};
+  }
+
+  @media screen and (min-width: ${breakpoints.large}) {
+    border-top: ${(props) =>
+      props.$gameStarted
+        ? '7.5px solid lightgray'
+        : props.$unselected
+        ? '7.5px solid #192845'
+        : '3.75px solid lightgray'};
+  }
+
+  @media screen and (min-width: ${breakpoints.xlarge}) {
+    border-top: ${(props) =>
+      props.$gameStarted
+        ? '10px solid lightgray'
+        : props.$unselected
+        ? '10px solid #192845'
+        : '5px solid lightgray'};
+  }
 `;
 
 export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
@@ -41,17 +68,22 @@ export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
       : `transparent`};
   padding: 0.675rem;
   border-radius: 50%;
-  border-bottom: ${(props) =>
-    props.$choice
-      ? `3px solid ${darkerShadow(choices[props.$choice], 1, 15)}`
-      : '3px solid transparent'};
+  border-bottom: ${(props) => {
+    if (props.$gameStarted && props.$choice) {
+      return `2.5px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+    }
+    if (!props.$gameStarted && props.$choice) {
+      return `2.5px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+    }
+    return '2.5px solid transparent';
+  }};
   height: 4.5rem;
-  width: 4.75rem;
+  width: 4.66666rem;
   z-index: 0;
   cursor: pointer;
 
   &:hover {
-    transform: scale(1.1);
+    transform: ${(props) => (props.$gameStarted ? 'none' : 'scale(1.1)')};
   }
 
   @media screen and (max-width: 280px) {
@@ -62,7 +94,17 @@ export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
 
   @media screen and (min-width: ${breakpoints.medium}) {
     height: ${(props) => (props.$gameStarted ? '8rem' : '5.25rem')};
-    width: ${(props) => (props.$gameStarted ? '8.4444rem' : '5.25rem')};
+    width: ${(props) => (props.$gameStarted ? '8.4444rem' : '5.5555rem')};
+    padding: ${(props) => (props.$gameStarted ? '1.25rem' : '0.675rem')};
+    border-bottom: ${(props) => {
+      if (props.$gameStarted && props.$choice) {
+        return `5px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      }
+      if (!props.$gameStarted && props.$choice) {
+        return `3.75px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      }
+      return '5px solid transparent';
+    }};
   }
 
   @media screen and (min-width: ${breakpoints.large}) {
@@ -70,6 +112,16 @@ export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
     width: 6.3333rem;
     height: ${(props) => (props.$gameStarted ? '12rem' : '6rem')};
     width: ${(props) => (props.$gameStarted ? '12.6666rem' : '6.3333rem')};
+    padding: ${(props) => (props.$gameStarted ? '1.75rem' : '0.8rem')};
+    border-bottom: ${(props) => {
+      if (props.$gameStarted && props.$choice) {
+        return `7.5px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      }
+      if (!props.$gameStarted && props.$choice) {
+        return `3.75px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      }
+      return '7.5px solid transparent';
+    }};
   }
 
   @media screen and (min-width: ${breakpoints.xlarge}) {
@@ -77,6 +129,16 @@ export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
     width: 7rem;
     height: ${(props) => (props.$gameStarted ? '16rem' : '6.315rem')};
     width: ${(props) => (props.$gameStarted ? '16.8888rem' : '7rem')};
+    padding: ${(props) => (props.$gameStarted ? '2rem' : '1rem')};
+    border-bottom: ${(props) => {
+      if (props.$gameStarted && props.$choice) {
+        return `10px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      }
+      if (!props.$gameStarted && props.$choice) {
+        return `5px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      }
+      return '10px solid transparent';
+    }};
   }
 `;
 

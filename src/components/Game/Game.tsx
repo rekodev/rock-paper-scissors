@@ -5,6 +5,7 @@ import { choices } from '../../utils/choices';
 import Result from '../Result';
 import { getResult } from '../../utils/getResult';
 import { useState, useEffect } from 'react';
+import Countdown from '../Countdown';
 
 interface IGame {
   choiceMade: Choice | null;
@@ -37,6 +38,17 @@ const Game = ({ choiceMade, setGameStarted }: IGame) => {
           <ChoiceButton gameStarted choice={choiceMade} />
           <p>YOU PICKED</p>
         </StyledGameChoice>
+
+        {selected ? (
+          <Result
+            result={gameResult}
+            setGameStarted={setGameStarted}
+            setSelected={setSelected}
+          />
+        ) : (
+          <Countdown />
+        )}
+
         <StyledGameChoice>
           {selected ? (
             <ChoiceButton gameStarted choice={computerChoice} />
@@ -47,13 +59,6 @@ const Game = ({ choiceMade, setGameStarted }: IGame) => {
           <p>THE HOUSE PICKED</p>
         </StyledGameChoice>
       </StyledGameChoiceWrapper>
-      {selected && (
-        <Result
-          result={gameResult}
-          setGameStarted={setGameStarted}
-          setSelected={setSelected}
-        />
-      )}
     </StyledGame>
   );
 };

@@ -5,11 +5,11 @@ export const StyledGame = styled.div`
   font-family: 'Barlow Semi Condensed', sans-serif;
   width: 100%;
   color: #fff;
-  max-width: 300px;
+  /* max-width: 300px; */
   max-height: 400px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+
   padding: 2rem 0;
   gap: 4rem;
 
@@ -25,9 +25,12 @@ export const StyledGame = styled.div`
 export const StyledGameChoiceWrapper = styled.div`
   display: flex;
   align-items: space-between;
-  justify-content: space-between;
-  /* align-self: flex-end; */
+  justify-content: center;
   gap: 6rem;
+
+  @media screen and (min-width: ${breakpoints.medium}) {
+    justify-content: space-between;
+  }
 `;
 
 export const StyledGameChoice = styled.div`

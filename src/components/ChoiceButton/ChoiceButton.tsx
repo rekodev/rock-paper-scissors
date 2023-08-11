@@ -33,7 +33,7 @@ const ChoiceButton = ({ choice, onClick, gameStarted }: IChoiceButtonProps) => {
           $choice={choice}
           onClick={onClick}
         >
-          <StyledChoiceButton>
+          <StyledChoiceButton $gameStarted={gameStarted}>
             {choice && <img src={choiceIcons[choice]} alt={choice} />}
           </StyledChoiceButton>
         </StyledChoiceButtonBorder>
