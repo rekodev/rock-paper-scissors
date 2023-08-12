@@ -8,11 +8,13 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
         background: linear-gradient(${colorsBackground.radialGradient});
         background-repeat: no-repeat;
+        overflow: hidden;
     }
 
     img {
         width: 100%;
     }
+
 `;
 
 export default GlobalStyle;

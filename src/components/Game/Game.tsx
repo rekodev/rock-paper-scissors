@@ -1,11 +1,18 @@
+import { useEffect, useState } from 'react';
 import { Choice } from '../../types/enums';
-import ChoiceButton from '../ChoiceButton';
-import { StyledGame, StyledGameChoice, StyledGameChoiceWrapper } from './style';
 import { choices } from '../../utils/choices';
-import Result from '../Result';
 import { getResult } from '../../utils/getResult';
-import { useState, useEffect } from 'react';
+import ChoiceButton from '../ChoiceButton';
 import Countdown from '../Countdown';
+import Result from '../Result';
+import {
+  StyledGame,
+  StyledGameChoice,
+  StyledGameChoiceWrapper,
+  StyledWinEffectLayerOne,
+  StyledWinEffectLayerThree,
+  StyledWinEffectLayerTwo,
+} from './style';
 
 interface IGame {
   choiceMade: Choice | null;
@@ -38,6 +45,14 @@ const Game = ({ choiceMade, setGameStarted }: IGame) => {
     <StyledGame>
       <StyledGameChoiceWrapper>
         <StyledGameChoice>
+          {selected && gameResult === 'YOU WIN' && (
+            <>
+              <StyledWinEffectLayerOne />
+              <StyledWinEffectLayerTwo />
+              <StyledWinEffectLayerThree />
+            </>
+          )}
+
           <ChoiceButton gameStarted choice={choiceMade} />
           <p>YOU PICKED</p>
         </StyledGameChoice>
@@ -53,6 +68,14 @@ const Game = ({ choiceMade, setGameStarted }: IGame) => {
         )}
 
         <StyledGameChoice>
+          {selected && gameResult === 'YOU LOSE' && (
+            <>
+              <StyledWinEffectLayerOne />
+              <StyledWinEffectLayerTwo />
+              <StyledWinEffectLayerThree />
+            </>
+          )}
+
           {selected ? (
             <ChoiceButton gameStarted choice={computerChoice} />
           ) : (

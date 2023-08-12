@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakpoints } from '../../styles/Theme';
 
 export const StyledLayout = styled.div`
   display: flex;
@@ -11,6 +12,9 @@ export const StyledLayout = styled.div`
   main {
     flex: 1;
     display: flex;
-    /* position: relative; */
+
+    @media screen and (max-width: ${breakpoints.small}) {
+      overflow: hidden;
+    }
   }
 `;

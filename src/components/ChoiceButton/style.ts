@@ -32,6 +32,8 @@ export const StyledChoiceButton = styled.div<IStyledChoiceButtonProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
+  user-select: none;
 
   img {
     width: calc(40%);
