@@ -4,6 +4,8 @@ import { StyledGame, StyledGameChoice, StyledGameChoiceWrapper } from './style';
 import { choices } from '../../utils/choices';
 import Result from '../Result';
 import { getResult } from '../../utils/getResult';
+import { useState, useEffect } from 'react';
+import Countdown from '../Countdown';
 
 interface IGame {
   choiceMade: Choice | null;
@@ -11,29 +13,55 @@ interface IGame {
 }
 
 const Game = ({ choiceMade, setGameStarted }: IGame) => {
+  const [selected, setSelected] = useState(false);
+  const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
+
+  useEffect(() => {
+    setComputerChoice(randomChoice());
+
+    const timerId = setTimeout(() => {
+      setSelected(true);
+    }, 3000);
+
+    return () => clearTimeout(timerId);
+  }, []);
+
   const randomChoice = (): Choice => {
     const randomNumber = Math.floor(Math.random() * 5);
 
     return choices[randomNumber];
   };
 
-  const playerChoice = choiceMade;
-  const computerChoice = randomChoice();
-  const gameResult = getResult(playerChoice, computerChoice);
+  const gameResult = getResult(choiceMade, computerChoice);
 
   return (
     <StyledGame>
       <StyledGameChoiceWrapper>
         <StyledGameChoice>
-          <ChoiceButton choice={choiceMade} />
+          <ChoiceButton gameStarted choice={choiceMade} />
           <p>YOU PICKED</p>
         </StyledGameChoice>
+
+        {selected ? (
+          <Result
+            result={gameResult}
+            setGameStarted={setGameStarted}
+            setSelected={setSelected}
+          />
+        ) : (
+          <Countdown />
+        )}
+
         <StyledGameChoice>
-          <ChoiceButton choice={computerChoice} />
+          {selected ? (
+            <ChoiceButton gameStarted choice={computerChoice} />
+          ) : (
+            <ChoiceButton gameStarted choice={null} />
+          )}
+
           <p>THE HOUSE PICKED</p>
         </StyledGameChoice>
       </StyledGameChoiceWrapper>
-      <Result result={gameResult} setGameStarted={setGameStarted} />
     </StyledGame>
   );
 };

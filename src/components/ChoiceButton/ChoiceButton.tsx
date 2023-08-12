@@ -13,6 +13,7 @@ import { Choice } from '../../types/enums';
 interface IChoiceButtonProps {
   choice: Choice | null;
   onClick?: () => void;
+  gameStarted?: boolean;
 }
 
 const choiceIcons = {
@@ -23,14 +24,28 @@ const choiceIcons = {
   [Choice.Scissors]: iconScissors,
 };
 
-const ChoiceButton = ({ choice, onClick }: IChoiceButtonProps) => {
+const ChoiceButton = ({ choice, onClick, gameStarted }: IChoiceButtonProps) => {
   return (
     <StyledChoiceButtonWrapper $choice={choice}>
-      <StyledChoiceButtonBorder $choice={choice} onClick={onClick}>
-        <StyledChoiceButton>
-          {choice && <img src={choiceIcons[choice]} alt={choice} />}
-        </StyledChoiceButton>
-      </StyledChoiceButtonBorder>
+      {choice ? (
+        <StyledChoiceButtonBorder
+          $gameStarted={gameStarted}
+          $choice={choice}
+          onClick={onClick}
+        >
+          <StyledChoiceButton $gameStarted={gameStarted}>
+            {choice && <img src={choiceIcons[choice]} alt={choice} />}
+          </StyledChoiceButton>
+        </StyledChoiceButtonBorder>
+      ) : (
+        <StyledChoiceButtonBorder
+          $gameStarted={gameStarted}
+          $choice={null}
+          onClick={onClick}
+        >
+          <StyledChoiceButton $unselected />
+        </StyledChoiceButtonBorder>
+      )}
     </StyledChoiceButtonWrapper>
   );
 };
