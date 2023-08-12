@@ -5,7 +5,6 @@ export const StyledGame = styled.div`
   font-family: 'Barlow Semi Condensed', sans-serif;
   width: 100%;
   color: #fff;
-  /* max-width: 300px; */
   max-height: 400px;
   display: flex;
   flex-direction: column;
@@ -60,4 +59,33 @@ export const StyledGameChoice = styled.div`
       top: -5rem;
     }
   }
+`;
+
+export const StyledWinEffectLayerOne = styled.div`
+  height: 140%;
+  width: 140%;
+  position: absolute;
+  background: #2b3858;
+  border-radius: 50%;
+  z-index: -1;
+`;
+
+export const StyledWinEffectLayerTwo = styled.div`
+  height: 180%;
+  width: 180%;
+  position: absolute;
+  background: #263554;
+  border-radius: 50%;
+  z-index: -2;
+  opacity: 0.75;
+`;
+
+export const StyledWinEffectLayerThree = styled.div`
+  height: 230%;
+  width: 230%;
+  position: absolute;
+  background: #223351;
+  border-radius: 50%;
+  z-index: -3;
+  opacity: 0.5;
 `;
