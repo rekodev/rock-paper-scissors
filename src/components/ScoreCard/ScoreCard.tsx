@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { ScoreContext } from '../../contexts/ScoreContext';
 import {
   StyledCardContent,
   StyledScoreCard,
@@ -5,16 +7,14 @@ import {
   StyledScoreTypography,
 } from './style';
 
-interface IScoreCardProps {
-  score?: number;
-}
+const ScoreCard = () => {
+  const { score } = useContext(ScoreContext);
 
-const ScoreCard = ({ score }: IScoreCardProps) => {
   return (
     <StyledScoreCard>
       <StyledCardContent>
         <StyledScoreTextTypography>SCORE</StyledScoreTextTypography>
-        <StyledScoreTypography>{score ? score : 12}</StyledScoreTypography>
+        <StyledScoreTypography>{score}</StyledScoreTypography>
       </StyledCardContent>
     </StyledScoreCard>
   );

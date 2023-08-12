@@ -8,20 +8,20 @@ export const StyledResult = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 15rem;
+  top: 25rem;
 
   @media screen and (min-width: ${breakpoints.medium}) {
     position: initial;
-    /* align-self: center; */
   }
 `;
 
 export const StyledResultText = styled.p`
   font-size: 2.375rem;
   margin: 1rem;
+  text-align: center;
 
   @media screen and (min-width: ${breakpoints.large}) {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 `;
 

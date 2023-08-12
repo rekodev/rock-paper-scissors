@@ -6,10 +6,11 @@ export const StyledLayout = styled.div`
   min-height: 100vh;
   max-width: 1280px;
   margin: 0 auto;
+  position: relative;
 
   main {
     flex: 1;
     display: flex;
-    position: relative;
+    /* position: relative; */
   }
 `;

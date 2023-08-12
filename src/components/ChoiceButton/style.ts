@@ -20,8 +20,12 @@ const choices = {
 export const StyledChoiceButton = styled.div<IStyledChoiceButtonProps>`
   background: ${(props) =>
     props.$unselected ? '#192845' : 'linear-gradient(90deg, #ddd, #f0f0f0)'};
-  /* border-top: ${(props) =>
-    props.$unselected ? `2.5px solid #192845` : '2.5px solid lightgray'}; */
+  border-top: ${(props) =>
+    props.$gameStarted
+      ? '3.75px solid lightgray'
+      : props.$unselected
+      ? '3.75px solid #192845'
+      : '3.75px solid lightgray'};
   border-radius: 50%;
   height: 100%;
   width: 100%;
@@ -70,20 +74,21 @@ export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
   border-radius: 50%;
   border-bottom: ${(props) => {
     if (props.$gameStarted && props.$choice) {
-      return `2.5px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      return `3.75px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
     }
     if (!props.$gameStarted && props.$choice) {
-      return `2.5px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
+      return `3.75px solid ${darkerShadow(choices[props.$choice], 1, 15)}`;
     }
-    return '2.5px solid transparent';
+    return '3.75px solid transparent';
   }};
   height: 4.5rem;
   width: 4.66666rem;
   z-index: 0;
-  cursor: pointer;
+  transition: transform 0.01s ease-in;
 
   &:hover {
     transform: ${(props) => (props.$gameStarted ? 'none' : 'scale(1.1)')};
+    cursor: ${(props) => (props.$gameStarted ? 'initial' : 'pointer')};
   }
 
   @media screen and (max-width: 280px) {
@@ -108,10 +113,8 @@ export const StyledChoiceButtonBorder = styled.div<IStyledChoiceButtonProps>`
   }
 
   @media screen and (min-width: ${breakpoints.large}) {
-    height: 6rem;
-    width: 6.3333rem;
-    height: ${(props) => (props.$gameStarted ? '12rem' : '6rem')};
-    width: ${(props) => (props.$gameStarted ? '12.6666rem' : '6.3333rem')};
+    height: ${(props) => (props.$gameStarted ? '10rem' : '5rem')};
+    width: ${(props) => (props.$gameStarted ? '10.5555rem' : '5.25rem')};
     padding: ${(props) => (props.$gameStarted ? '1.75rem' : '0.8rem')};
     border-bottom: ${(props) => {
       if (props.$gameStarted && props.$choice) {

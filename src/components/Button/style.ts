@@ -46,7 +46,7 @@ export const StyledButton = styled(Button)<IStyledButtonProps>`
   @media screen and (min-width: ${breakpoints.medium}) {
     && {
       position: ${(props) =>
-        props.variant === 'outlined' ? 'absolute' : 'initial'};
+        props.variant === 'outlined' ? 'fixed' : 'initial'};
       right: 2rem;
       bottom: 2rem;
 

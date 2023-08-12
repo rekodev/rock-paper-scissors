@@ -14,11 +14,16 @@ interface IGame {
 
 const Game = ({ choiceMade, setGameStarted }: IGame) => {
   const [selected, setSelected] = useState(false);
+  const [computerChoice, setComputerChoice] = useState<Choice | null>(null);
 
   useEffect(() => {
-    setTimeout(() => {
+    setComputerChoice(randomChoice());
+
+    const timerId = setTimeout(() => {
       setSelected(true);
     }, 3000);
+
+    return () => clearTimeout(timerId);
   }, []);
 
   const randomChoice = (): Choice => {
@@ -27,9 +32,7 @@ const Game = ({ choiceMade, setGameStarted }: IGame) => {
     return choices[randomNumber];
   };
 
-  const playerChoice = choiceMade;
-  const computerChoice = randomChoice();
-  const gameResult = getResult(playerChoice, computerChoice);
+  const gameResult = getResult(choiceMade, computerChoice);
 
   return (
     <StyledGame>

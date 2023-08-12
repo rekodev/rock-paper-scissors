@@ -7,7 +7,7 @@ export const StyledCountdown = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 15rem;
+  top: 25rem;
 
   @media screen and (min-width: ${breakpoints.medium}) {
     position: initial;
@@ -17,5 +17,6 @@ export const StyledCountdown = styled.div`
 export const StyledTypography = styled(Typography)`
   && {
     font-size: 6rem;
+    font-family: 'Barlow Semi Condensed', sans-serif;
   }
 `;

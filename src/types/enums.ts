@@ -5,3 +5,5 @@ export enum Choice {
   Spock = 'Spock',
   Lizard = 'Lizard',
 }
+
+export type Outcome = 'YOU WIN' | 'YOU LOSE' | 'DRAW';
