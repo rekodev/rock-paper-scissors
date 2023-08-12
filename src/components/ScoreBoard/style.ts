@@ -22,7 +22,7 @@ export const StyledTextWrapper = styled(Box)`
 
 export const StyledTypography = styled(Typography)`
   && {
-    line-height: 1;
+    line-height: 0.9;
     font-weight: 600;
     font-family: 'Barlow Semi Condensed', sans-serif;
   }

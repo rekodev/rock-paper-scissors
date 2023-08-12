@@ -9,6 +9,7 @@ const ScoreBoard = () => {
         <StyledTypography>PAPER</StyledTypography>
         <StyledTypography>SCISSORS</StyledTypography>
         <StyledTypography>LIZARD</StyledTypography>
+        <StyledTypography>SPOCK</StyledTypography>
       </StyledTextWrapper>
 
       <ScoreCard />

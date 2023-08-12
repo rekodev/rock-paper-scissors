@@ -12,9 +12,9 @@ export const StyledLayout = styled.div`
   main {
     flex: 1;
     display: flex;
+  }
 
-    @media screen and (max-width: ${breakpoints.small}) {
-      overflow: hidden;
-    }
+  @media screen and (max-width: ${breakpoints.small}) {
+    overflow: hidden;
   }
 `;
