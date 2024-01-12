@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: [GitHub Pages](https://64d7a45bf5a8af118546d52f--jazzy-puppy-e4bd22.netlify.app/)
+- Live Site URL: [Netlify](https://rekodev-rpsls.netlify.app/)
 
 ## My process
 
